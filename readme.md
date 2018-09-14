@@ -1,4 +1,4 @@
-#Spotify Project
+## Music Analysis Project
 Aubrey Beltran, Jennifer Shtaway, and Raymond Tiu
 Useful links
 Github -      Spotify API -        Billboard API - 
