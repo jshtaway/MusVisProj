@@ -3,11 +3,23 @@
     <head>
         <meta charset='utf-8'>
         <title>Music Statistics</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style>
+            .description {
+              background: url('https://t1.pixers.pics/img-b5fce81d/duvar-resimleri-amerika-papagani-tuyler-gokkusagi.jpg?H4sIAAAAAAAAAyWNXQrCMBCEr9OCdBPy180B-tojlDRuNKI2ZCOIpzfi0wzzzTDwenJIBCnfG1X2lTh_aHBCnMTo01EfoQ23chnh2lphD8BqKvndu10iw99DH8CygkWQDqwDxF-0LatF6axD3IKN8y6cDmRQK52isTMJtZuOtUznqb98AZXnG_SOAAAA');
+              background-repeat: no-repeat;
+              background-size: cover;
+              color:white;
+            }
+        </style>
     </head>
-    <body>
+    <body >
         {% include 'includes/_navbar.html' %}
-        {% block body %}{% endblock %}
-        <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+        <div >
+            {% block body %}{% endblock %}
+        </div>
     </body>
+    <script src='http://code.jquery.com/jquery-latest.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript"></script>
 </html>

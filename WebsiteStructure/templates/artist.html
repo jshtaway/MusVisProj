@@ -1,0 +1,21 @@
+
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class='description jumbotron'>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+     <div class="container" >
+        <h1 class="display-3">Artist</h1>
+        <p>
+            Doing something that has to do with artist. :)
+        </p>
+        <p>{{artist_name}}</p>
+        <form class="form-inline my-2 my-lg-0">
+            <input id='inputbox' class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="artistName">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="EventData()">Search Artist</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

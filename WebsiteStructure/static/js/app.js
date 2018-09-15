@@ -1,22 +1,18 @@
-// Plot the default route once the page loads
-const defaultURL = "/emoji_char";
-d3.json(defaultURL).then(function(data) {
-  var data = [data];
-  var layout = { margin: { t: 30, b: 100 } };
-  Plotly.plot("bar", data, layout);
-});
+console.log("YAAAAAAAAAAAAAAAAAAAAAAAAY");
 
-// Update the plot with new data
-function updatePlotly(newdata) {
-  Plotly.restyle("bar", "x", [newdata.x]);
-  Plotly.restyle("bar", "y", [newdata.y]);
+var hello = function(){
+  console.log('I\'m doing something!')
 }
 
-// Get new data whenever the dropdown selection changes
-function getData(route) {
-  console.log(route);
-  d3.json(`/${route}`).then(function(data) {
-    console.log("newdata", data);
-    updatePlotly(data);
-  });
+// $('#inputbox').keyup(function(event) {
+//   if(event.keyCode === 13) {
+//       event.preventDefault();
+//       $('.btn').click();
+//   }
+// });
+
+var EventData = function(){
+  var artistName = d3.select('input').property('value')
+  console.log(artistName)
 }
+
