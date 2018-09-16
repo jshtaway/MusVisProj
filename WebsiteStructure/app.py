@@ -13,6 +13,14 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
+engine = create_engine("sqlite:///db/events.sqlite")
+
+# reflect an existing database into a new model
+Base = automap_base()
+# reflect the tables
+Base.prepare(engine, reflect=True)
+# Create our session (link) from Python to the DB
+session = Session(engine)
 
 #################################################
 # Flask Setup
@@ -40,6 +48,12 @@ def artist():
         artist_name = form.artistName.data
         print(artist_name)
     return render_template('artist.html', artist_name=artist_name)
+
+@app.route('/api/<artist>')
+def api(artist):
+    artist_events = Base.classes.artist_events
+    results = session.query(artist_events.artist_name, artist_events.city, artist_events.consert_name, artist_events.date, artist_events.lat, artist_events.lng, artist_events.popularity).filter(artist_events.artist_name == artist).all()
+    return jsonify(results)
 
 
 if __name__ == '__main__':
