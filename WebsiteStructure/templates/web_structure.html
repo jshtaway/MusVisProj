@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+    <div class='jumbotron description'>
+        <div class = 'col-lg-12'>
+        <a class=' flaskHideDisplay' href='#pop-up'>
+                Flask
+                <span class='showOnHover col-sm-4'>
+                    <embed class='image' color='red' src="{{ url_for('static', filename='images/test.py') }}" >
+                </span>
+            </a>
+        <a class='flaskHideDisplay' href='#pop-up'>
+            layout.html
+            <span class='showOnHover col-sm-4'>
+                <embed class='image ' src="{{ url_for('static', filename='images/layout.txt') }}">
+            </span>
+        </a>
+        <a class='flaskHideDisplay' href='#pop-up'>
+            home.html
+            <span class='showOnHover col-sm-4'>
+                <embed class='image' src="{{ url_for('static', filename='images/home.txt') }}">
+            </span>
+        </a>
+        <a class='flaskHideDisplay' href='#pop-up'>
+                Javascript
+                <span class='showOnHover col-sm-4'>
+                    <embed class='image' src="{{ url_for('static', filename='images/nothing') }}">
+                </span>
+            </a>
+        <a class='flaskHideDisplay' href='#pop-up'>
+                Meta
+                <span class='showOnHover col-sm-4'>
+                    <embed class='image' src="{{ url_for('static', filename='images/web_structure.txt') }}">
+                </span>
+            </a>
+    </div>
+    <style>
+        .image{
+            margin-top: 40px;
+            height: 500px;
+            width: 10000px;
+            opacity: .9;
+            position: absolute;
+        }
+        a.flaskHideDisplay {
+            padding: 50px
+        }
+        a.flaskHideDisplay span.showOnHover{
+            display: none;
+        }
+        a.flaskHideDisplay:hover span.showOnHover{
+            display:block;
+            position:absolute;
+            
+        }
+        a.flaskHideDisplay:hover{
+            z-index: 30;
+        }
+
+    </style>
+{% endblock %}

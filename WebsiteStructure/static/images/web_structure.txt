@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+    <div class='jumbotron'>
+        <div class = 'col-sm-4'>
+        <a class=' flaskHideDisplay' href='#pop-up'>
+                Flask
+                <span class='showOnHover col-sm-4'>
+                    <embed class='image' src="{{ url_for('static', filename='images/test.py') }}" >
+                </span>
+            </a>
+        <a class='flaskHideDisplay' href='#pop-up'>
+            layout.html
+            <span class='showOnHover col-sm-4'>
+                <img class='image' src="{{ url_for('static', filename='images/layout.png') }}">
+            </span>
+        </a>
+        <a class='flaskHideDisplay' href='#pop-up'>
+            home.html
+            <span class='showOnHover col-sm-4'>
+                <img class='image' src="{{ url_for('static', filename='images/home.png') }}">
+            </span>
+        </a>
+        <a class='flaskHideDisplay' href='#pop-up'>
+                Javascript
+                <span class='showOnHover col-sm-4'>
+                    <img class='image' src="{{ url_for('static', filename='images/test3.png') }}">
+                </span>
+            </a>
+        </div>
+        <a class='flaskHideDisplay' href='#pop-up'>
+                Meta
+                <span class='showOnHover col-sm-4'>
+                    <img class='image' src="{{ url_for('static', filename='images/test3.png') }}">
+                </span>
+            </a>
+        </div>
+    </div>
+    <style>
+        .image{
+            height: 500px;
+            width: 1000px;
+            background:darkgrey;
+            
+        }
+        a.flaskHideDisplay {
+            padding: 10px
+        }
+        a.flaskHideDisplay span.showOnHover{
+            display: none;
+        }
+        a.flaskHideDisplay:hover span.showOnHover{
+            display:block;
+            position:absolute;
+            
+        }
+        a.flaskHideDisplay:hover{
+            z-index: 30;
+        }
+
+    </style>
+{% endblock %}
