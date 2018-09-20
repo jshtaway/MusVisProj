@@ -54,13 +54,10 @@ def artist():
     m = re.search('artistName=(\w+)', str(request))
     if m :
         artist = m.group(1)
-        print(f'artist = {artist}')
-        print('hi')
         artist_events = Base.classes.artist_events
         results = session.query(artist_events.artist_name, artist_events.city, artist_events.consert_name, artist_events.date, artist_events.lat, artist_events.lng, artist_events.popularity).filter(artist_events.artist_name == artist).all()
-        geojson = json.dumps(results)
-        #results = jsonify(geojson)
-    print(type(geojson))
+        geojson = to_geojson(results)
+        geojson = json.dumps(geojson)
     return render_template('artist.html',results=geojson)
 
 @app.route('/api/<artist>')
@@ -80,11 +77,12 @@ def api_geojson(artist):
 # Use the following functions to convert api info to GeoJSON
 def to_geojson(results):
     geojson = {'type':'FeatureCollection', 'features':[]}
+    feature = {'type':'Feature',
+               'properties':{},
+               'geometry':{'type':'Point',
+                           'coordinates':[]}}
     for result in results:
-        feature = {'type':'Feature',
-                   'properties':{},
-                   'geometry':{'type':'Point',
-                               'coordinates':[]}}
+        
         feature['geometry']['coordinates'] = [result.lng,result.lat]
         feature['properties']['name'] = result.consert_name
         feature['properties']['date'] = result.date

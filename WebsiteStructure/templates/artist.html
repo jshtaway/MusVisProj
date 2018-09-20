@@ -2,7 +2,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<div class='description jumbotron'>
+<div class='description jumbotron row'>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
      <div class="container" >
@@ -16,11 +16,11 @@
             <button class="btn btn-outline-success my-2 my-sm-0 text-dark" type="submit" >Search Artist</button>
         </form>
     </div>
-    <div>
-        <script>
-            var results = {{ results|tojson }}
-        </script>
-        <script src="{{ url_for('static', filename='js/artist_logics.js') }}"></script>
-    </div>
 </div>
+<div class='row col-lg-4' ><p id='map'></p></div>
+<script>
+    var results = {{ results|tojson }}
+</script>
+<script src="{{ url_for('static', filename='js/config.js') }}"></script>
+<script src="{{ url_for('static', filename='js/artist_logics.js') }}"></script>
 {% endblock %}

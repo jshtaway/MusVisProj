@@ -18,7 +18,8 @@ function createMap (conserts) {
     var overlayMaps = {
         Artist: conserts
     };
-    var map = L.map("map", {
+    
+    var map = L.map('map', {
                 center: [37.09, -95.71],
                 zoom: 5,
                 layers: [basemap, conserts]
@@ -27,15 +28,15 @@ function createMap (conserts) {
         collapsed: false
     }).addTo(map);
 }
-
+var events;
 function createFeatures(data) {
     console.log(data)
     function onEachFeature(feature, layer) {
         layer.bindPopup("<h3>" + feature.properties.name + "</h3>");
+        events = L.geoJSON(data, {
+            onEachFeature: onEachFeature        
+        })
     }
-    var events = L.geoJSON(data, {
-        onEachFeature: onEachFeature        
-    });
     createMap(events);
 };
 
