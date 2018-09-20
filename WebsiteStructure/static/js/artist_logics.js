@@ -29,6 +29,7 @@ function createMap (conserts) {
 }
 
 function createFeatures(data) {
+    console.log(data)
     function onEachFeature(feature, layer) {
         layer.bindPopup("<h3>" + feature.properties.name + "</h3>");
     }
