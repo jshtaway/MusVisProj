@@ -48,15 +48,15 @@ def artist():
     if request.method == 'POST':
         artist_name = form.artistName.data
         print(artist_name)
-    return render_template('artist.html', artist_name=artist_name)
+    geojson = to_geojson(results)
+    results = jsonify(geojson)
+    return render_template('artist.html',results)
 
 @app.route('/api/<artist>')
 def api(artist):
     artist_events = Base.classes.artist_events
     results = session.query(artist_events.artist_name, artist_events.city, artist_events.consert_name, artist_events.date, artist_events.lat, artist_events.lng, artist_events.popularity).filter(artist_events.artist_name == artist).all()
-    geojson = to_geojson(results)
-    results = jsonify(geojson)
-    return render_template('artist.html',results)
+    return jsonify(results)
 
 @app.route('/api_geojson/<artist>')
 def api_geojson(artist):
@@ -64,7 +64,7 @@ def api_geojson(artist):
     results = session.query(artist_events.artist_name, artist_events.city, artist_events.consert_name, artist_events.date, artist_events.lat, artist_events.lng, artist_events.popularity).filter(artist_events.artist_name == artist).all()
     geojson = to_geojson(results)
     print("Loading GeoJSON...")
-    return jsonify(geojson)
+    return render_template('artist.html',jsonify(geojson))
 
 
 if __name__ == '__main__':
