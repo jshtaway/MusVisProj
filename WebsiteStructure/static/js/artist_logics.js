@@ -30,13 +30,15 @@ function createMap (conserts) {
 }
 var events;
 function createFeatures(data) {
-    console.log(data)
+    //  console.log(data)
+    var feature = data.features
     function onEachFeature(feature, layer) {
         layer.bindPopup("<h3>" + feature.properties.name + "</h3>");
-        events = L.geoJSON(data, {
-            onEachFeature: onEachFeature        
+        events = L.geoJSON(data.features, {
+            onEachFeature: onEachFeature
         })
     }
+    console.log(events)
     createMap(events);
 };
 
@@ -102,25 +104,10 @@ var geojsonMarkerOptions = {
     fillOpacity: 0.8
 };
 createFeatures(results)
-// console.log(results);
 
-// var artistName
-// var link
-// var EventData = function () {
-//     artistName = d3.select('input').property('value')
-//     console.log(artistName)
-//     // link = 'http://127.0.0.1:5000/' + "api_geojson/" + artistName;
-//     // // console.log(link)
-//     // d3.json(link, function (data) {
-//     //     // console.log(error);
-//     //     console.log(link)
-//     //     console.log(data);
-//     //     // Creating a GeoJSON layer with the retrieved data
-//     //     createFeatures(data);
-//     // });
-//     createFeatures(data);
-    
-// };
-
-
+// var jensTry = function() {
+//     var myLayer = L.geoJSON().addTo(map);
+//     myLayer.addData(results);
+// }
+// jensTry()
 

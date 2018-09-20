@@ -77,12 +77,12 @@ def api_geojson(artist):
 # Use the following functions to convert api info to GeoJSON
 def to_geojson(results):
     geojson = {'type':'FeatureCollection', 'features':[]}
-    feature = {'type':'Feature',
+    
+    for result in results:
+        feature = {'type':'Feature',
                'properties':{},
                'geometry':{'type':'Point',
                            'coordinates':[]}}
-    for result in results:
-        
         feature['geometry']['coordinates'] = [result.lng,result.lat]
         feature['properties']['name'] = result.consert_name
         feature['properties']['date'] = result.date
