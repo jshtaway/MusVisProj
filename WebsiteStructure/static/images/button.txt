@@ -1,0 +1,38 @@
+
+#--- --- --- Python --- --- --- --- ---- --- ---- 
+@app.route('/artist', methods=['GET','POST'])
+def artist():
+    #form = ArtistSearch(request.form)
+    geojson = {}
+    #if request.method == 'POST':
+    m = re.search('artistName=(\w+)', str(request))
+    if m :
+        artist = m.group(1)
+        artist_events = Base.classes.artist_events
+        results = session.query(artist_events.artist_name, artist_events.city, artist_events.consert_name, artist_events.date, artist_events.lat, artist_events.lng, artist_events.popularity).filter(artist_events.artist_name == artist).all()
+        geojson = to_geojson(results)
+        geojson = json.dumps(geojson)
+    return render_template('artist.html',results=geojson)
+#--- --- --- Python --- --- --- --- ---- --- ---- 
+
+#--- --- --- Html --- --- ---- -- --- --- --- --- 
+<div class='description jumbotron'>
+   ...
+        <form class="form-inline my-2 my-lg-0 ">
+            <input id='inputbox' class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="artistName">
+            <button class="btn btn-outline-success my-2 my-sm-0 text-dark" type="submit" >Search Artist</button>
+        </form>
+    </div>
+    <div>
+        <script>
+            var results = {{ results|tojson }}
+        </script>
+        <script src="{{ url_for('static', filename='js/artist_logics.js') }}"></script>
+    </div>
+  ...
+</div>
+#--- --- --- Html --- --- ---- -- --- --- --- --- 
+
+#--- --- --- JavaScript --- --- --- ---- --- --- 
+console.log('data can be found here', results)
+#--- --- --- JavaScript --- --- --- ---- --- --- 
