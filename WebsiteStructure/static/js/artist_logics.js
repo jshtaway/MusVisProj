@@ -100,24 +100,26 @@ var geojsonMarkerOptions = {
     opacity: 1,
     fillOpacity: 0.8
 };
+createFeatures(results)
+// console.log(results);
 
-console.log("HERE");
-var artistName
-var link
-var EventData = function () {
-    artistName = d3.select('input').property('value')
-    console.log(artistName)
-    link = 'http://127.0.0.1:5000/' + "api_geojson/" + artistName;
-    console.log(link)
-    d3.json(link, function (data) {
-        // console.log(error);
-        console.log(link)
-        console.log(data);
-        // Creating a GeoJSON layer with the retrieved data
-        createFeatures(data);
-    });
+// var artistName
+// var link
+// var EventData = function () {
+//     artistName = d3.select('input').property('value')
+//     console.log(artistName)
+//     // link = 'http://127.0.0.1:5000/' + "api_geojson/" + artistName;
+//     // // console.log(link)
+//     // d3.json(link, function (data) {
+//     //     // console.log(error);
+//     //     console.log(link)
+//     //     console.log(data);
+//     //     // Creating a GeoJSON layer with the retrieved data
+//     //     createFeatures(data);
+//     // });
+//     createFeatures(data);
     
-};
+// };
 
 
 

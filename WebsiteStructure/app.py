@@ -2,6 +2,7 @@ import pandas as pd
 import datetime as dt
 from wtforms import Form, StringField
 from flask_wtf import FlaskForm
+import re, json
 
 from flask import (
     Flask,
@@ -44,18 +45,23 @@ def web_structure():
 
 # class ArtistSearch(FlaskForm):
 
+
 @app.route('/artist', methods=['GET','POST'])
 def artist():
     #form = ArtistSearch(request.form)
-    artist_name = ''
-    if request.method == 'POST':
-        artist_name = request.form.data
-        print(artist_name)
-    # artist_events = Base.classes.artist_events
-    # results = session.query(artist_events.artist_name, artist_events.city, artist_events.consert_name, artist_events.date, artist_events.lat, artist_events.lng, artist_events.popularity).filter(artist_events.artist_name == artist).all()
-    # geojson = to_geojson(results)
-    results = artist_name#jsonify(geojson)
-    return render_template('artist.html',results=results)
+    geojson = {}
+    #if request.method == 'POST':
+    m = re.search('artistName=(\w+)', str(request))
+    if m :
+        artist = m.group(1)
+        print(f'artist = {artist}')
+        print('hi')
+        artist_events = Base.classes.artist_events
+        results = session.query(artist_events.artist_name, artist_events.city, artist_events.consert_name, artist_events.date, artist_events.lat, artist_events.lng, artist_events.popularity).filter(artist_events.artist_name == artist).all()
+        geojson = json.dumps(results)
+        #results = jsonify(geojson)
+    print(type(geojson))
+    return render_template('artist.html',results=geojson)
 
 @app.route('/api/<artist>')
 def api(artist):

@@ -4,7 +4,7 @@
 {% block body %}
 <div class='description jumbotron'>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="{{ url_for('static', filename='js/artist_logics.js') }}"></script>
+    <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
      <div class="container" >
         <h1 class="display-3">Artist</h1>
         <p>
@@ -13,8 +13,14 @@
         <!-- <p>{{artist_name}}</p> -->
         <form class="form-inline my-2 my-lg-0 ">
             <input id='inputbox' class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="artistName">
-            <button class="btn btn-outline-success my-2 my-sm-0 text-dark" type="button" onclick="EventData()">Search Artist</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 text-dark" type="submit" >Search Artist</button>
         </form>
+    </div>
+    <div>
+        <script>
+            var results = {{ results|tojson }}
+        </script>
+        <script src="{{ url_for('static', filename='js/artist_logics.js') }}"></script>
     </div>
 </div>
 {% endblock %}
