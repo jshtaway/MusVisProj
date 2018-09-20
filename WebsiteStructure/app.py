@@ -43,11 +43,11 @@ def web_structure():
 
 @app.route('/artist', methods=['GET','POST'])
 def artist():
-    form = ArtistSearch(request.form)
+    #form = ArtistSearch(request.form)
     artist_name = ''
-     if request.method == 'POST':
-         artist_name = form.artistName.data
-         print(artist_name)
+    if request.method == 'POST':
+        artist_name = form.artistName.data
+        print(artist_name)
     return render_template('artist.html', artist_name=artist_name)
 
 @app.route('/api/<artist>')
@@ -55,6 +55,14 @@ def api(artist):
     artist_events = Base.classes.artist_events
     results = session.query(artist_events.artist_name, artist_events.city, artist_events.consert_name, artist_events.date, artist_events.lat, artist_events.lng, artist_events.popularity).filter(artist_events.artist_name == artist).all()
     return jsonify(results)
+
+@app.route('/api_geojson/<artist>')
+def api_geojson(artist):
+    artist_events = Base.classes.artist_events
+    results = session.query(artist_events.artist_name, artist_events.city, artist_events.consert_name, artist_events.date, artist_events.lat, artist_events.lng, artist_events.popularity).filter(artist_events.artist_name == artist).all()
+    geojson = to_geojson(results)
+    print("Loading GeoJSON...")
+    return render_template('artist.html',jsonify(geojson))
 
 
 if __name__ == '__main__':
