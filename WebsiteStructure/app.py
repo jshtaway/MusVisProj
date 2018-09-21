@@ -50,6 +50,7 @@ def web_structure():
 def artist():
     #form = ArtistSearch(request.form)
     geojson = {}
+    artist = ''
     #if request.method == 'POST':
     m = re.search('artistName=(\w+)', str(request))
     if m :
