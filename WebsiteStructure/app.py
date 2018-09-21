@@ -58,7 +58,7 @@ def artist():
         results = session.query(artist_events.artist_name, artist_events.city, artist_events.consert_name, artist_events.date, artist_events.lat, artist_events.lng, artist_events.popularity).filter(artist_events.artist_name == artist).all()
         geojson = to_geojson(results)
         geojson = json.dumps(geojson)
-    return render_template('artist.html',results=geojson)
+    return render_template('artist.html',results=artist)
 
 @app.route('/api/<artist>')
 def api(artist):
