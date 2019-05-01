@@ -1,8 +1,4 @@
 ## Music Analysis Project
-Aubrey Beltran, Jennifer Shtaway, and Raymond Tiu
-Useful links
-Github -      Spotify API -        Billboard API - 
-Gracenote API  -   Last.fm API -    Songkick API -
 What Data Sources?
 Team 7 will be using web-scraping to gather current Billboard Top 100 lists and Last.fm top lists, along with utilizing RESTful APIs to access historical Billboard data. Loading this data into the MongoDB we’ve established we’ll be appending Gracenote (or Apple or Discocogs) genre data to help classify the ‘type’ of each top track’s artist and plotting the trends over time on D3.js visualizations. Songkick will then let us delve into a more fun question about a single artist’s international presence which will be plotted on Leaftlet to show the accuracy of ‘Mr. Worldwide’.
 
@@ -60,3 +56,8 @@ Use songkick to pull all past events, it has location & popularity as well as ti
 Visualize each concert of Pitbull’s around the world
 Map those locations on a leaflet.js with a marker size according to popularity, and draw a roadmap line to connect all those events based on time series.
 Also show how many continents he’s hit?
+
+Jennifer Shtaway, Aubrey Beltran, and Raymond Tiu
+Useful links
+Github -      Spotify API -        Billboard API - 
+Gracenote API  -   Last.fm API -    Songkick API -
